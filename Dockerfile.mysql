@@ -1,0 +1,13 @@
+FROM debian:stable
+ARG PASSWORD="$PASSWORD"
+RUN apt-get update
+RUN apt-get install -y default-mysql-server
+RUN echo 'GRANT ALL on social.*' | tee /db.sql
+RUN echo "TO 'social'@'localhost'" | tee -a /db.sql
+RUN echo "IDENTIFIED BY '$PASSWORD';" | tee -a /db.sql
+RUN service mysql start && \
+    mysqladmin -u "root" --password="$PASSWORD" create socia &&  \
+    mysql -u "root" --password="$PASSWORD" < /db.sql
+VOLUME /var/lib/mysql
+VOLUME /var/run/mysqld
+CMD service mysql start; tail -f /var/log/mysql/*.log
