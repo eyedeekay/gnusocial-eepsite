@@ -57,7 +57,7 @@ run: build clean network run-host mariadb-run run-torhost
 		--hostname gnusocial-eepsite \
 		--link gnusocial-mariadb \
 		--ip 172.82.82.5 \
-		-p 127.0.0.1:8080:8080 \
+		-p 127.0.0.1:8080:80 \
 		-v mysql-socket:/var/run/mysqld \
 		eyedeekay/gnusocial-eepsite
 

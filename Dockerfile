@@ -1,7 +1,7 @@
 FROM debian:stable
 RUN apt-get update
 RUN apt-get install task-web-server libapache2-mod-php openssl \
-    php-curl php-gd php-gmp php-intl php-json php-mysqlnd \
+    php-curl php-gd php-gmp php-intl php-json php-mysqlnd php-xml php-mbstring \
     git -y
 RUN git clone -b 1.2.x https://git.gnu.io/gnu/gnu-social.git /var/www/gnu-social
 RUN echo 'ServerName 0.0.0.0:8080' > /etc/apache2/sites-available/000-default.conf
