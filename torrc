@@ -1,9 +1,13 @@
-SOCKSPort 172.81.81.6:9150
+SOCKSPort 172.82.82.3:9150
 
 SOCKSPolicy accept 172.0.0.0/8
 
 DataDirectory /var/lib/tor
 
-ControlPort 172.81.81.6:9151
+ControlPort 172.82.82.3:9151
 
 CookieAuthentication 1
+
+HiddenServiceDir /var/lib/tor/gnusocial-onion/
+
+HiddenServicePort 80 172.82.82.5:80

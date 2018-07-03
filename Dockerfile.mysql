@@ -1,13 +1,27 @@
-FROM debian:stable
+FROM debian:sid
 ARG PASSWORD="$PASSWORD"
+ARG ROOTPASSWORD="$ROOTPASSWORD"
+#ENV ROOTPASSWORD="$ROOTPASSWORD"
 RUN apt-get update
 RUN apt-get install -y default-mysql-server
-RUN echo 'GRANT ALL on social.*' | tee /db.sql
-RUN echo "TO 'social'@'localhost'" | tee -a /db.sql
+RUN echo "CREATE USER 'social'@'%' IDENTIFIED BY '$PASSWORD';" | tee -a /db.sql
+RUN echo 'GRANT ALL on social.*' | tee -a /db.sql
+RUN echo "TO 'social'@'%'" | tee -a /db.sql
 RUN echo "IDENTIFIED BY '$PASSWORD';" | tee -a /db.sql
+
+RUN find -name *.cnf -exec sed -i 's|localhost|0.0.0.0|g' {} \;
+RUN find -name *.cnf -exec sed -i "s|password =|password = $ROOTPASSWORD|g" {} \;
+
+RUN echo "SHOW DATABASES" >/databases
+RUN echo "use mysql; show tables;" > /tables
+RUN echo "SELECT User FROM mysql.user" >/users
+
 RUN service mysql start && \
-    mysqladmin -u "root" --password="$PASSWORD" create socia &&  \
-    mysql -u "root" --password="$PASSWORD" < /db.sql
+    mysqladmin -u "root" -p$ROOTPASSWORD create social &&  \
+    mysql -u "root" -p$ROOTPASSWORD < /db.sql
+
+#RUN tail -f /var/log/mysql/*.log
+
 VOLUME /var/lib/mysql
 VOLUME /var/run/mysqld
-CMD service mysql start; tail -f /var/log/mysql/*.log
+CMD mysqld -v

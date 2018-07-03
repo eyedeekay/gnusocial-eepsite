@@ -1,0 +1,6 @@
+FROM alpine:3.7
+RUN apk update -U
+RUN apk add privoxy
+COPY config /etc/privoxy/config
+USER privoxy
+CMD privoxy --no-daemon /etc/privoxy/config
