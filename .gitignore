@@ -3,3 +3,5 @@ root_password
 hostname
 eepsname
 db.sql
+mysql
+config.php

@@ -1,4 +1,5 @@
 FROM alpine:3.7
+# ARG PROXYPASSWORD="$PROXYPASSWORD" This is unused for now.
 RUN apk update -U
 RUN apk add privoxy
 COPY config /etc/privoxy/config

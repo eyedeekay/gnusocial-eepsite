@@ -4,24 +4,21 @@ ARG ROOTPASSWORD="$ROOTPASSWORD"
 #ENV ROOTPASSWORD="$ROOTPASSWORD"
 RUN apt-get update
 RUN apt-get install -y default-mysql-server
+
 RUN echo "CREATE USER 'social'@'%' IDENTIFIED BY '$PASSWORD';" | tee -a /db.sql
 RUN echo 'GRANT ALL on social.*' | tee -a /db.sql
 RUN echo "TO 'social'@'%'" | tee -a /db.sql
 RUN echo "IDENTIFIED BY '$PASSWORD';" | tee -a /db.sql
 
-RUN find -name *.cnf -exec sed -i 's|localhost|0.0.0.0|g' {} \;
+RUN find -name *.cnf -exec sed -i 's|127.0.0.1|0.0.0.0|g' {} \;
 RUN find -name *.cnf -exec sed -i "s|password =|password = $ROOTPASSWORD|g" {} \;
-
-RUN echo "SHOW DATABASES" >/databases
-RUN echo "use mysql; show tables;" > /tables
-RUN echo "SELECT User FROM mysql.user" >/users
+RUN find -name *.cnf -exec sed -i 's|skip-networking|# skip-networking|g' {} \;
 
 RUN service mysql start && \
     mysqladmin -u "root" -p$ROOTPASSWORD create social &&  \
     mysql -u "root" -p$ROOTPASSWORD < /db.sql
 
-#RUN tail -f /var/log/mysql/*.log
-
+EXPOSE 3306
 VOLUME /var/lib/mysql
 VOLUME /var/run/mysqld
 CMD mysqld -v
