@@ -1,7 +1,7 @@
 Configuring a GNU Social instance as a Hidden Service on Tor and i2p
 ====================================================================
 
-*WARNING:*
+*WARNING: This is not ready yet.*
 
 This tutorial is a step-by-step walkthrough of how I set up a GNU Social
 as an eepSite, using Tor to obfuscate it's physical location to other members of
