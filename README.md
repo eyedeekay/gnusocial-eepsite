@@ -31,16 +31,19 @@ MariaDB container. Since we're running a service, we're only really concerned
 with obfuscating our physical location, not making ourselves unidentifiable to
 other GNU Social nodes. Unfortunately, for now, it's impossible to get an EV
 certificate for a .onion-only domain from Let's Encrypt, so it's not possible
-to identify yourself to the other GNU Social instances. That's limiting to us,
-as we will only be able to communicate with nodes that allow HTTP connections,
-which is bad on the clearnet. It's not ideal on darknets either, but it's less
-bad.
+to identify yourself to the other GNU Social instances in that way, or
+communicate in an encrypted way with the rest of the Fediverse. That's limiting
+to us, as we will only be able to communicate with nodes that allow HTTP
+connections, which is bad on the clearnet. It's not ideal on darknets either,
+but it's less bad.
 
 Preparation
 -----------
 
 Far and away the easiest part of this to figure out is the actual hidden service
-configuration
+configuration.
+
+### Docker
 
 ### i2p
 
@@ -48,8 +51,16 @@ configuration
 
 ### privoxy
 
+### Dynamic DNS?
+
+### Let's Encrypt?
+
 Patching the GNU Social Defaults
 --------------------------------
+
+Here's where we make sure that the proxy configuration is pre-set by default to
+make sure that they are used even when configuring the instance.
+
 
 Setting up MariaDB
 ------------------

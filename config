@@ -18,7 +18,8 @@ split-large-forms 0
 keep-alive-timeout 5
 tolerate-pipelining 1
 socket-timeout 300
-forward-socks5 / 172.82.82.3:9150 .
+forward-socks5t / 172.82.82.3:9150 .
+#forward-socks5t .onion 172.82.82.3:9150 .
 forward .i2p 172.82.82.2:4444
 forward 172.82.82.4 172.82.82.4
-
+#forward 172.82.82.7 172.82.82.7

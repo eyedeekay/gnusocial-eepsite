@@ -14,6 +14,7 @@ build:
 	docker build -f Dockerfile.mysql --build-arg PASSWORD="$(PASSWORD)" --build-arg ROOTPASSWORD="$(ROOTPASSWORD)" -t eyedeekay/gnusocial-mariadb .
 	docker build -f Dockerfile.privoxy --build-arg PROXYPASSWORD="$(PROXYPASSWORD)" -t eyedeekay/gnusocial-privoxy .
 	docker build -f Dockerfile -t eyedeekay/gnusocial-eepsite .
+	docker build -f Dockerfile.ddns -t eyedeekay/gnusocial-ddns .
 
 
 run-host: network
