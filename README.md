@@ -16,7 +16,7 @@ itself available as an eepSite and a hidden service by default. In this guide,
 the service you host **will not be anonymous**, it's purpose is to provide
 anonymity to users. In order to be hidden-only but also be a secure participant
 in the Fediverse, it would be necessary to get a certificate for an onion-only
-domain which isn't possible yet [1].
+domain which isn't possible yet <sup>1</sup>.
 
 Preparation
 -----------
@@ -25,6 +25,8 @@ Far and away the easiest part of this to figure out is the actual hidden service
 configuration.
 
 ### Docker
+
+
 
 ### i2p
 
@@ -53,7 +55,7 @@ Initial GNU Social Configuration
 Footnote:
 ---------
 
-[1] Originally, I had intended for this to be hidden-only. In order to do this,
+<sup>1</sup> Originally, I had intended for this to be hidden-only. In order to do this,
 it's possible to set GNU Social configuration settings proxy\_host, proxy\_port
 to direct traffic to an HTTP proxy server, but since i2p's http proxy can only
 be used to access other eepsites, we'll have to use Privoxy to route requests
