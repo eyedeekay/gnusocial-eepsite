@@ -1,5 +1,6 @@
 password
 root_password
+proxy_password
 hostname
 eepsname
 db.sql
