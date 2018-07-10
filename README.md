@@ -1,11 +1,13 @@
 Configuring a GNU Social instance as a Hidden Service on Tor and i2p
 ====================================================================
 
-*WARNING: This is not ready yet.*
+***WARNING:** This is not ready yet.*
 
 This tutorial is a step-by-step walkthrough of how I set up a GNU Social
 as an eepSite, a Tor Hidden Service, and allow it to communicate with i2p, Tor,
 and Clearnet GNU Social instances.
+
+***WARNING:** Read all the way to the end. This suggests both server and client configuration.*
 
 Background/Goals
 ----------------
@@ -61,7 +63,12 @@ port = 4444
 ```
 
 Obviously that's listening on all interfaces. Since we're using Docker to
-isolate the network and privoxy to route requests, this should be fine.
+isolate the network and privoxy to route requests, this should be fine. Make
+sure to **never** use this HTTP Proxy for **Anything** unrelated to your GNU
+Social instance. To do so would establish a link between the GNU Social instance
+and the other activity, de-anonymizing you. It is highly unsafe, in fact pretty
+much **guaranteed** to doom your anonmymity to use this HTTP Proxy for anything
+other than GNU Social.
 
 ### Tor
 
@@ -84,6 +91,12 @@ SOCKSPort 172.82.82.3:9150
 SOCKSPolicy accept 172.0.0.0/8
 DataDirectory /var/lib/tor
 ```
+
+Once again: Make sure to **never** use this SocksPort for **Anything** unrelated
+to your GNU Social instance. To do so would establish a link between the GNU
+Social instance and the other activity, de-anonymizing you. It is highly unsafe,
+in fact pretty much **guaranteed** to doom your anonmymity to use this SocksPort
+for anything other than GNU Social.
 
 ### privoxy
 
