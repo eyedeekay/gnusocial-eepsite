@@ -100,6 +100,13 @@ for anything other than GNU Social.
 
 ### privoxy
 
+Now that we've gone through the i2pd and Tor configuration, we'll need to
+provide a single port to route requests made by the GNU Social software to
+the correct network. This will allow us to use one ip:port combination for our
+GNU Social proxy, routing .onion and clearnet requests over Tor, and routing
+.i2p requests(and only .i2p requests) over i2p. Here's the privoxy config file
+that I used:
+
 ```
 user-manual /usr/share/doc/privoxy/user-manual/
 confdir /etc/privoxy
@@ -128,7 +135,17 @@ forward 172.82.82.4 172.82.82.4
 
 ### Dynamic DNS
 
+In order to obtain a TLS certificate, we need a domain name on the clearnet.
+I searched and searched for an alternative that would allow us to be .onion and
+.i2p only, and even found a few, but they all had unacceptable, nonstandard, or
+insecure shortcomings that made them unuseful. While this **does not affect**
+**the anonymity of clients** it does mean that the **GNU Social instance**
+**cannot itself be anonymous location-obfuscated from it's visitors**, for now.
+If it becomes possible to get a real TLS certificate for a .onion only domain,
+the situation will get better.
 
+People who know me know that I hate everything about Dynamic DNS, except for the
+inconvenient fact that it's useful.
 
 ```
 ```
